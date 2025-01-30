@@ -1,4 +1,4 @@
-package nl.rabobank.org_users_rest.controllers
+package nl.rabobank.org_users_rest.controller
 
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
