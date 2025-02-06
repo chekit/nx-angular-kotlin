@@ -2,11 +2,9 @@ package nl.rabobank.org_users_rest.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
-import java.io.DataInputStream
-import java.io.FileInputStream
 import java.nio.file.Paths
 
-class FsUsersRepository(objectMapper: ObjectMapper) : UsersRepository {
+class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
     private val file = "src/main/resources/static/users.json";
 
     private val source by lazy {
@@ -21,7 +19,7 @@ class FsUsersRepository(objectMapper: ObjectMapper) : UsersRepository {
         }
     }
 
-    override fun getAll(): MutableList<User> {
+    override fun findAll(): MutableList<User> {
         return data;
     }
 
@@ -35,5 +33,11 @@ class FsUsersRepository(objectMapper: ObjectMapper) : UsersRepository {
 
     override fun deleteOne(): String {
         return "OK";
+    }
+
+    override fun save(data: MutableList<User>): String {
+        objectMapper.writeValue(source, data);
+
+        return "Ok";
     }
 }
