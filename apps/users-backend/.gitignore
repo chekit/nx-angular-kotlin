@@ -85,6 +85,6 @@ Temporary Items
 .history
 .ionide
 
-*.drawio
+# *.drawio
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,macos
