@@ -24,7 +24,7 @@ class UsersController(private val usersService: UsersService) {
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Int,@RequestBody userData: UpdateUserDto ): User {
+    fun updateUser(@PathVariable id: Int, @RequestBody userData: UpdateUserDto): User {
         return usersService.updateUserById(id, userData);
     }
 

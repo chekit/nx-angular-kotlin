@@ -2,6 +2,8 @@ package nl.rabobank.org_users_rest.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
+import org.springframework.context.annotation.Profile
+import org.springframework.stereotype.Repository
 import java.nio.file.Paths
 
 class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
