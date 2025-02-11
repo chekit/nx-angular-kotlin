@@ -1,11 +1,13 @@
 package nl.rabobank.org_users_rest.repository
 
 import nl.rabobank.org_users_rest.model.User
+import nl.rabobank.org_users_rest.model.UserDto
 
 interface UsersRepository {
     fun findAll(): MutableList<User>;
-    fun addOne(): MutableList<User>;
-    fun updateOne(): User;
-    fun deleteOne(): String;
+    fun addOne(newUser: User): MutableList<User>;
+    fun updateOne(index: Int, updatedUser: User): User;
+    fun deleteOne(index: Int): String;
     fun save(data: MutableList<User>): String;
+    fun findIndexById(id: Int): Int;
 }

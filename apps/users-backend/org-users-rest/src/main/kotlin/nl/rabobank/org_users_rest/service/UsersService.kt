@@ -4,7 +4,9 @@ import nl.rabobank.org_users_rest.model.UpdateUserDto
 import nl.rabobank.org_users_rest.model.User
 import nl.rabobank.org_users_rest.model.UserDto
 import nl.rabobank.org_users_rest.repository.UsersRepository
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class UsersService(private val repo: UsersRepository) {
@@ -17,17 +19,31 @@ class UsersService(private val repo: UsersRepository) {
         val lastId: Int = users.maxByOrNull { it.id }?.let { it.id + 1 } ?: 0;
         val newUser = User(lastId, data.firstName, data.lastName, data.role);
 
-        users.addLast(newUser)
-        repo.save(users);
-
-        return users;
+        return repo.addOne(newUser);
     }
 
     fun updateUserById(id: Int, data: UpdateUserDto): User {
-        return repo.updateOne()
+        val userIndex = repo.findIndexById(id)
+
+        if (userIndex < 0) throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
+
+        val users: MutableList<User> = repo.findAll();
+        val user = users[userIndex];
+        val updatedUser = User(
+            id = user.id,
+            firstName = data.firstName ?: user.firstName,
+            lastName = data.lastName ?: user.lastName,
+            role = data.role ?: user.role
+        )
+
+        return repo.updateOne(userIndex, updatedUser);
     }
 
     fun deleteUserById(id: Int): String {
-        return repo.deleteOne()
+        val userIndex = repo.findIndexById(id);
+
+        if (userIndex < 0) throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
+
+        return repo.deleteOne(userIndex)
     }
 }

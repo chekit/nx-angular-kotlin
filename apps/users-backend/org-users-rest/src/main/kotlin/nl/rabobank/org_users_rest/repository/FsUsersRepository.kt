@@ -2,6 +2,7 @@ package nl.rabobank.org_users_rest.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
+import nl.rabobank.org_users_rest.model.UserDto
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Repository
 import java.nio.file.Paths
@@ -25,15 +26,24 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
         return data;
     }
 
-    override fun addOne(): MutableList<User> {
+    override fun addOne(newUser: User): MutableList<User> {
+        data.addLast(newUser)
+        save(data);
+
         return data;
     }
 
-    override fun updateOne(): User {
-        return data[0];
+    override fun updateOne(index: Int, updatedUser: User): User {
+        data[index] = updatedUser;
+        save(data);
+
+        return updatedUser;
     }
 
-    override fun deleteOne(): String {
+    override fun deleteOne(index: Int): String {
+        data.removeAt(index);
+        save(data);
+
         return "OK";
     }
 
@@ -41,5 +51,9 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
         objectMapper.writeValue(source, data);
 
         return "Ok";
+    }
+
+    override fun findIndexById(id: Int): Int {
+        return data.indexOfFirst { it.id == id }
     }
 }
