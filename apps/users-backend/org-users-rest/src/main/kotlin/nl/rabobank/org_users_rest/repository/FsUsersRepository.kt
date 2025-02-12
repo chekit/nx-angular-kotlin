@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Repository
 import java.nio.file.Paths
 
+//@Repository
+//@Profile("local")
 class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
     private val file = "src/main/resources/static/users.json";
 
@@ -42,9 +44,8 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
 
     override fun deleteOne(index: Int): String {
         data.removeAt(index);
-        save(data);
 
-        return "OK";
+        return  save(data);
     }
 
     override fun save(data: MutableList<User>): String {

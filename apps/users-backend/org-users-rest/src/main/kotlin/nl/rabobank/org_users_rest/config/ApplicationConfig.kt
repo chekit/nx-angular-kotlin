@@ -13,8 +13,6 @@ import org.springframework.data.redis.core.RedisTemplate
 
 @Configuration
 class ApplicationConfig {
-    // 1. We can use Spring Profile to create bean based on its value https://www.baeldung.com/spring-profiles
-    //
     // 2. We can also use application properties and create a different Beans (conditional properties): https://www.baeldung.com/spring-conditional-annotations
     @Bean
     fun repository(): UsersRepository {

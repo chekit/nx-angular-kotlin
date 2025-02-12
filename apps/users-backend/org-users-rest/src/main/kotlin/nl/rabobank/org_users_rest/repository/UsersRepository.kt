@@ -1,7 +1,6 @@
 package nl.rabobank.org_users_rest.repository
 
 import nl.rabobank.org_users_rest.model.User
-import nl.rabobank.org_users_rest.model.UserDto
 
 interface UsersRepository {
     fun findAll(): MutableList<User>;
