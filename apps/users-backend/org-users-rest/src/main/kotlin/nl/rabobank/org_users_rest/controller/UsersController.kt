@@ -17,6 +17,11 @@ class UsersController(private val usersService: UsersService) {
         return usersService.getUsers();
     }
 
+    @GetMapping("/{id}")
+    fun getUser(@PathVariable id: Int): User {
+        return usersService.getUser(id);
+    }
+
     @PostMapping("/", "")
     @ResponseStatus(HttpStatus.ACCEPTED)
     fun addUser(@RequestBody userData: UserDto): MutableList<User> {

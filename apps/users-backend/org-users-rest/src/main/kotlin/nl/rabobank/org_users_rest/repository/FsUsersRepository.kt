@@ -3,12 +3,11 @@ package nl.rabobank.org_users_rest.repository
 import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
 import nl.rabobank.org_users_rest.model.UserDto
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Repository
 import java.nio.file.Paths
 
-//@Repository
-//@Profile("local")
 class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
     private val file = "src/main/resources/static/users.json";
 
@@ -28,6 +27,10 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
         return data;
     }
 
+    override fun findById(id: Int): User? {
+        return data.firstOrNull { it.id == id }
+    }
+
     override fun addOne(newUser: User): MutableList<User> {
         data.addLast(newUser)
         save(data);
@@ -35,26 +38,26 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
         return data;
     }
 
-    override fun updateOne(index: Int, updatedUser: User): User {
-        data[index] = updatedUser;
+    override fun updateOne(updatedUser: User): User {
+        data.replaceAll { if (it.id == updatedUser.id) updatedUser else it }
         save(data);
 
         return updatedUser;
     }
 
-    override fun deleteOne(index: Int): String {
-        data.removeAt(index);
+    override fun deleteOne(id: Int): String? {
+        val user = data.firstOrNull { it.id == id }
 
-        return  save(data);
+        if (user ==null) return null;
+
+        data.remove(user);
+
+        return save(data);
     }
 
     override fun save(data: MutableList<User>): String {
         objectMapper.writeValue(source, data);
 
         return "Ok";
-    }
-
-    override fun findIndexById(id: Int): Int {
-        return data.indexOfFirst { it.id == id }
     }
 }

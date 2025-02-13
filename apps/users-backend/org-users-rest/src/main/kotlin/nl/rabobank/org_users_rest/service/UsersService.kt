@@ -14,6 +14,10 @@ class UsersService(private val repo: UsersRepository) {
         return repo.findAll()
     }
 
+    fun getUser(id: Int): User {
+        return repo.findById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
+    }
+
     fun addUser(data: UserDto): MutableList<User> {
         val users: MutableList<User> = repo.findAll();
         val lastId: Int = users.maxByOrNull { it.id }?.let { it.id + 1 } ?: 0;
@@ -23,27 +27,19 @@ class UsersService(private val repo: UsersRepository) {
     }
 
     fun updateUserById(id: Int, data: UpdateUserDto): User {
-        val userIndex = repo.findIndexById(id)
+        val user =
+            repo.findById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
 
-        if (userIndex < 0) throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
-
-        val users: MutableList<User> = repo.findAll();
-        val user = users[userIndex];
-        val updatedUser = User(
-            id = user.id,
+        val updatedUser = user.copy(
             firstName = data.firstName ?: user.firstName,
             lastName = data.lastName ?: user.lastName,
             role = data.role ?: user.role
-        )
+        );
 
-        return repo.updateOne(userIndex, updatedUser);
+        return repo.updateOne(updatedUser);
     }
 
     fun deleteUserById(id: Int): String {
-        val userIndex = repo.findIndexById(id);
-
-        if (userIndex < 0) throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found");
-
-        return repo.deleteOne(userIndex)
+        return repo.deleteOne(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found")
     }
 }

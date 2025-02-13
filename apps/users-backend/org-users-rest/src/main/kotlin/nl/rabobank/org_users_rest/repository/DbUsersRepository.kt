@@ -1,13 +1,13 @@
 package nl.rabobank.org_users_rest.repository
 
 import nl.rabobank.org_users_rest.model.User
-import org.springframework.context.annotation.Profile
-import org.springframework.stereotype.Repository
 
-//@Repository
-//@Profile("dev")
 class DbUsersRepository: UsersRepository {
     override fun findAll(): MutableList<User> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findById(id: Int): User? {
         TODO("Not yet implemented")
     }
 
@@ -15,19 +15,15 @@ class DbUsersRepository: UsersRepository {
         TODO("Not yet implemented")
     }
 
-    override fun updateOne(index: Int, updatedUser: User): User {
+    override fun updateOne(updatedUser: User): User {
         TODO("Not yet implemented")
     }
 
-    override fun deleteOne(index: Int): String {
+    override fun deleteOne(id: Int): String? {
         TODO("Not yet implemented")
     }
 
     override fun save(data: MutableList<User>): String {
-        TODO("Not yet implemented")
-    }
-
-    override fun findIndexById(id: Int): Int {
         TODO("Not yet implemented")
     }
 }
