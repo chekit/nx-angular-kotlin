@@ -2,10 +2,6 @@ package nl.rabobank.org_users_rest.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
-import nl.rabobank.org_users_rest.model.UserDto
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
-import org.springframework.context.annotation.Profile
-import org.springframework.stereotype.Repository
 import java.nio.file.Paths
 
 class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
@@ -23,13 +19,9 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
         }
     }
 
-    override fun findAll(): MutableList<User> {
-        return data;
-    }
+    override fun findAll(): MutableList<User> = data;
 
-    override fun findById(id: Int): User? {
-        return data.firstOrNull { it.id == id }
-    }
+    override fun findById(id: Int): User? =  data.firstOrNull { it.id == id }
 
     override fun addOne(newUser: User): MutableList<User> {
         data.addLast(newUser)
@@ -46,9 +38,7 @@ class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepositor
     }
 
     override fun deleteOne(id: Int): String? {
-        val user = data.firstOrNull { it.id == id }
-
-        if (user ==null) return null;
+        val user = data.firstOrNull { it.id == id } ?: return null;
 
         data.remove(user);
 
