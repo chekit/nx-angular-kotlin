@@ -4,24 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import nl.rabobank.org_users_rest.model.User
 import java.nio.file.Paths
 
-class FsUsersRepository(private val objectMapper: ObjectMapper) : UsersRepository {
-    private val file = "src/main/resources/static/users.json";
+class FsUsersRepository(private val objectMapper: ObjectMapper, private val filepath: String) : UsersRepository {
+    private val source = Paths.get(filepath).toFile();
 
-    private val source by lazy {
-        Paths.get(file).toFile()
-    };
-
-    private val data by lazy {
-        if (source.exists()) {
-            objectMapper.readValue(source, Array<User>::class.java).toList().toMutableList();
-        } else {
-            mutableListOf()
-        }
+    private val data = if (source.exists()) {
+        objectMapper.readValue(source, Array<User>::class.java).toList().toMutableList();
+    } else {
+        mutableListOf()
     }
 
     override fun findAll(): MutableList<User> = data;
 
-    override fun findById(id: Int): User? =  data.firstOrNull { it.id == id }
+    override fun findById(id: Int): User? = data.firstOrNull { it.id == id }
 
     override fun addOne(newUser: User): MutableList<User> {
         data.addLast(newUser)

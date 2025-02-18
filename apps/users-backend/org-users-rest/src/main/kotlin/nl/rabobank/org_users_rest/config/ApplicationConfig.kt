@@ -7,8 +7,12 @@ import nl.rabobank.org_users_rest.repository.DbUsersRepository
 import nl.rabobank.org_users_rest.repository.FsUsersRepository
 import nl.rabobank.org_users_rest.repository.UsersRepository
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+
+@ConfigurationProperties(prefix = "app.org-users")
+data class AppProperties(val source: String, val url: String)
 
 @Configuration
 class ApplicationConfig {
@@ -16,12 +20,12 @@ class ApplicationConfig {
     @ConditionalOnProperty(
         prefix = "app", name = ["org-users.source"], havingValue = "local"
     )
-    fun defineFsRepository(): UsersRepository {
+    fun defineFsRepository(appProperties: AppProperties): UsersRepository {
         val mapper = JsonMapper.builder()
             .addModule(KotlinModule.Builder().build())
             .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS, true).build();
 
-        return FsUsersRepository(mapper);
+        return FsUsersRepository(mapper, appProperties.url);
     }
 
     @Bean
