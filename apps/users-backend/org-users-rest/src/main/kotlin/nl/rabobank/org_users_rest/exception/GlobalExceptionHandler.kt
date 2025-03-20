@@ -1,7 +1,10 @@
 package nl.rabobank.org_users_rest.exception
 
-import org.springframework.expression.ParseException
+import com.fasterxml.jackson.databind.exc.InvalidFormatException
+import nl.rabobank.org_users_rest.model.UserRole
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -31,4 +34,25 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(ex.statusCode).body(error)
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun handleInvalidEnumException(ex: HttpMessageNotReadableException): ResponseEntity<ApiError> {
+        val cause = ex.cause;
+        var error = ApiError(
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = "Invalid request format",
+            message = ""
+        );
+
+        if (cause is InvalidFormatException && cause.targetType.isEnum) {
+            if (cause.targetType == UserRole::class.java) {
+                error = ApiError(
+                    status = HttpStatus.BAD_REQUEST.value(),
+                    error = "Can't parse the data",
+                    message = "Invalid role value"
+                )
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error)
+    }
 }
