@@ -19,5 +19,5 @@ sealed class User {
 enum class UserRole(val role: String) {
     ADMIN("admin"),
     MODERATOR("moderator"),
-    USER("user")
+    USER("user");
 }

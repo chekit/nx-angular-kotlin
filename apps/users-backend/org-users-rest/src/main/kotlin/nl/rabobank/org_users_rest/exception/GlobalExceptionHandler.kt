@@ -45,8 +45,7 @@ class GlobalExceptionHandler {
 
         if (cause is InvalidFormatException && cause.targetType.isEnum) {
             if (cause.targetType == UserRole::class.java) {
-                error = ApiError(
-                    status = HttpStatus.BAD_REQUEST.value(),
+                error = error.update(
                     error = "Can't parse the data",
                     message = "Invalid role value"
                 )
