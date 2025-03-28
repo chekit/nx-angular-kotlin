@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.server.ResponseStatusException
 
+/** @TODO
+ *     Kotlin has "result" response with sealed class
+ *     We can create a nice object instead of throwing error or not just throw exceptions
+ *     https://arrow-kt.io/learn/typed-errors/
+ */
+
 @ControllerAdvice
 class GlobalExceptionHandler {
     @ExceptionHandler(ResponseStatusException::class)
@@ -37,21 +43,37 @@ class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException::class)
     fun handleInvalidEnumException(ex: HttpMessageNotReadableException): ResponseEntity<ApiError> {
         val cause = ex.cause;
-        var error = ApiError(
+        val defaultError = ApiError(
             status = HttpStatus.BAD_REQUEST.value(),
             error = "Invalid request format",
             message = ""
         );
 
-        if (cause is InvalidFormatException && cause.targetType.isEnum) {
+        val error = if (cause is InvalidFormatException && cause.targetType.isEnum) {
             if (cause.targetType == UserRole::class.java) {
-                error = error.update(
+                ApiError(
+                    status = HttpStatus.BAD_REQUEST.value(),
                     error = "Can't parse the data",
                     message = "Invalid role value"
-                )
+                );
+            } else {
+                defaultError
             }
+        } else {
+            defaultError
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error)
+        return ResponseEntity.badRequest().body(error)
+    }
+
+    @ExceptionHandler(UnknownEntityException::class)
+    fun handleInvalidDbQuery(ex: UnknownEntityException): ResponseEntity<ApiError> {
+        val error = ApiError(
+            status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            error = "Source unavailable",
+            message = "Can't reach the data source"
+        );
+
+        return ResponseEntity.internalServerError().body(error)
     }
 }

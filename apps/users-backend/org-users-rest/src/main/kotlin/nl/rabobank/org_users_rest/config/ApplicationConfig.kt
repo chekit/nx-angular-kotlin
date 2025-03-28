@@ -3,6 +3,7 @@ package nl.rabobank.org_users_rest.config
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.json.JsonMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import jakarta.persistence.EntityManager
 import nl.rabobank.org_users_rest.repository.DbUsersRepository
 import nl.rabobank.org_users_rest.repository.FsUsersRepository
 import nl.rabobank.org_users_rest.repository.UsersRepository
@@ -32,7 +33,7 @@ class ApplicationConfig {
     @ConditionalOnProperty(
         prefix = "app", name = ["org-users.source"], havingValue = "db"
     )
-    fun defineDbRepository(): UsersRepository {
-        return DbUsersRepository();
+    fun defineDbRepository(entityManager: EntityManager): UsersRepository {
+        return DbUsersRepository(entityManager);
     }
 }

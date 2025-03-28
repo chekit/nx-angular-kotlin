@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: 'postgres:17.4'
+    container_name: org_user_db
+    restart: always
+    environment:
+      - POSTGRES_DB=org_user_db
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: org_user_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+volumes:
+  pg_data:

@@ -1,30 +1,30 @@
 package nl.rabobank.org_users_rest.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import nl.rabobank.org_users_rest.model.User
+import nl.rabobank.org_users_rest.entity.User
 import java.nio.file.Paths
 
 class FsUsersRepository(private val objectMapper: ObjectMapper, filepath: String) : UsersRepository {
     private val source = Paths.get(filepath).toFile();
 
     private val data = if (source.exists()) {
-        objectMapper.readValue(source, Array<User.Entity>::class.java).toList().toMutableList();
+        objectMapper.readValue(source, Array<User>::class.java).toList().toMutableList();
     } else {
         mutableListOf()
     }
 
-    override fun findAll(): MutableList<User.Entity> = data;
+    override fun findAll(): List<User> = data;
 
-    override fun findById(id: Int): User.Entity? = data.firstOrNull { it.id == id }
+    override fun findUserById(id: Int): User? = data.firstOrNull { it.id == id }
 
-    override fun addOne(newUser: User.Entity): MutableList<User.Entity> {
+    override fun addOne(newUser: User): List<User> {
         data.addLast(newUser)
         save(data);
 
         return data;
     }
 
-    override fun updateOne(updatedUser: User.Entity): User.Entity {
+    override fun updateOne(updatedUser: User): User {
         data.replaceAll { if (it.id == updatedUser.id) updatedUser else it }
         save(data);
 
@@ -39,7 +39,7 @@ class FsUsersRepository(private val objectMapper: ObjectMapper, filepath: String
         return save(data);
     }
 
-    override fun save(data: MutableList<User.Entity>): String {
+    override fun save(data: List<User>): String {
         objectMapper.writeValue(source, data);
 
         return "Ok";
