@@ -2,6 +2,7 @@ package nl.rabobank.org_users_rest.exception
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import nl.rabobank.org_users_rest.model.UserRole
+import org.hibernate.query.sqm.UnknownEntityException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
