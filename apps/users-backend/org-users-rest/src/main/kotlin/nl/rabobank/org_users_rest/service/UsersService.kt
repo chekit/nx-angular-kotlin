@@ -17,7 +17,7 @@ class UsersService(private val repo: DbUsersRepository) {
 
     fun getUser(id: Int): User {
         return repo.findById(id)
-            .getOrDefault(throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found"))
+            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found") }
     }
 
     fun addUser(data: UserDto): List<User> {
@@ -25,7 +25,9 @@ class UsersService(private val repo: DbUsersRepository) {
         val lastId: Int = users.maxByOrNull { it.id }?.let { it.id + 1 } ?: 0;
         val newUser = User(lastId, data.firstName, data.lastName, data.role.toString());
 
-        return repo.save(newUser).let { getUsers() };
+        repo.save(newUser)
+
+        return getUsers()
     }
 
     fun updateUserById(id: Int, data: UserUpdateDto): User {

@@ -16,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException
  *     We can create a nice object instead of throwing error or not just throw exceptions
  *     https://arrow-kt.io/learn/typed-errors/
  */
-
 @ControllerAdvice
 class GlobalExceptionHandler {
     @ExceptionHandler(ResponseStatusException::class)

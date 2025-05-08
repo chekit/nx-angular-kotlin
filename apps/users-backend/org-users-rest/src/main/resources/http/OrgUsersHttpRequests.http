@@ -1,3 +1,24 @@
 GET http://localhost:8080/api/users/
 
+###
 POST http://localhost:8080/api/users/
+Content-Type: application/json
+
+{
+    "firstName": "Antoon",
+    "lastName": "Cherepov",
+    "role": "ADMIN"
+}
+
+###
+DELETE http://localhost:8080/api/users/4
+
+###
+PUT http://localhost:8080/api/users/4
+Content-Type: application/json
+
+{
+  "firstName": "Antoon",
+  "lastName": "Cherepov",
+  "role": "ADMIN"
+}

@@ -7,5 +7,4 @@ import org.springframework.context.annotation.Configuration
 data class AppProperties(val source: String, val url: String)
 
 @Configuration
-class ApplicationConfig {
-}
+class ApplicationConfig {}
