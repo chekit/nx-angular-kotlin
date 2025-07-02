@@ -13,7 +13,7 @@ data class User(
     @Column(name = "first_name") val firstName: String = "",
     @Column(name = "last_name") val lastName: String = "",
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     val role: Role
 ) {}
