@@ -7,10 +7,10 @@ data class UserDto(
     val firstName: String,
     @field:NotBlank(message = "lastName should no be blank")
     val lastName: String,
-    val role: UserRole = UserRole.USER
+    val role: Int = 0
 )
 
-data class UserUpdateDto(val firstName: String?, val lastName: String?, val role: UserRole?)
+data class UserUpdateDto(val firstName: String?, val lastName: String?, val role: Int?)
 
 // @TODO: make case insensitive
 enum class UserRole(val role: String) {

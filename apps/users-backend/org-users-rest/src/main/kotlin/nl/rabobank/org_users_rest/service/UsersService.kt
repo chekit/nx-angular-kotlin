@@ -23,7 +23,7 @@ class UsersService(private val repo: DbUsersRepository) {
     fun addUser(data: UserDto): List<User> {
         val users: List<User> = getUsers();
         val lastId: Int = users.maxByOrNull { it.id }?.let { it.id + 1 } ?: 0;
-        val newUser = User(lastId, data.firstName, data.lastName, data.role.toString());
+        val newUser = User(lastId, data.firstName, data.lastName, data.role);
 
         repo.save(newUser)
 
@@ -36,7 +36,7 @@ class UsersService(private val repo: DbUsersRepository) {
         val updatedUser = user.copy(
             firstName = data.firstName ?: user.firstName,
             lastName = data.lastName ?: user.lastName,
-            role = (data.role ?: user.role).toString()
+            role = data.role ?: user.role
         );
 
         return repo.save(updatedUser);
