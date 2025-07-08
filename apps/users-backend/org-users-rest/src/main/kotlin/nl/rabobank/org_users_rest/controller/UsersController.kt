@@ -17,7 +17,7 @@ class UsersController(private val usersService: UsersService) {
     fun getUsers(): ResponseEntity<List<UserDto>> = ResponseEntity.ok(usersService.getUsers());
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: Int): ResponseEntity<UserDto> = ResponseEntity.ok(usersService.getUser(id));
+    fun getUser(@PathVariable id: Int): ResponseEntity<UserDto> = ResponseEntity.ok(usersService.getUserById(id));
 
     @PostMapping("/", "")
     fun addUser(@RequestBody @Valid userData: AddUserDto): ResponseEntity<List<UserDto>> =

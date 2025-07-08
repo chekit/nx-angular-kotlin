@@ -12,15 +12,15 @@ import org.springframework.web.server.ResponseStatusException
 
 @Service
 class UsersService(private val usersRepo: DbUsersRepository, private val roleRepo: DbRoleRepository) {
-    fun getUsers(): List<UserDto> {
-        return usersRepo.findAll().map { UserDto(it) }.toList();
-    }
+    fun getUsers(): List<UserDto> = usersRepo.findAll()
+        .map { UserDto(it) }
+        .toList();
 
-    fun getUser(id: Int): UserDto {
-        return usersRepo.findById(id)
-            .map { UserDto(it) }
-            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found") }
-    }
+
+    fun getUserById(id: Int): UserDto = usersRepo.findById(id)
+        .map { UserDto(it) }
+        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found") }
+
 
     fun addUser(data: AddUserDto): List<UserDto> {
         val newUser = User(
@@ -35,22 +35,25 @@ class UsersService(private val usersRepo: DbUsersRepository, private val roleRep
     }
 
     fun updateUserById(id: Int, data: UpdateUserDto): UserDto {
-        val user = usersRepo.findById(id).orElseThrow();
+        val user = usersRepo.findById(id)
+            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID $id not found") }
 
-        val updatedUser = User(
-            id = user.id,
-            firstName = data.firstName ?: user.firstName,
-            lastName = data.lastName ?: user.lastName,
-            role = data.role?.let {
-                roleRepo.findById(data.role)
-                    .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") }
-            } ?: user.role
-        )
+        val result = usersRepo.save(
+            User(
+                id = user.id,
+                firstName = data.firstName ?: user.firstName,
+                lastName = data.lastName ?: user.lastName,
+                role = data.role?.let {
+                    roleRepo.findById(data.role)
+                        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") }
+                } ?: user.role
+            ))
 
-        return UserDto(usersRepo.save(updatedUser));
+        return UserDto(result)
     }
 
-    fun deleteUserById(id: Int): String {
-        return getUser(id).let { usersRepo.deleteById(it.id) }.let { "OK" };
-    }
+    fun deleteUserById(id: Int): String = getUserById(id)
+        .let { usersRepo.deleteById(it.id) }
+        .let { "OK" };
+
 }
