@@ -1,15 +1,13 @@
 package nl.rabobank.org_users_rest.exception
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException
-import nl.rabobank.org_users_rest.model.UserRole
 import org.hibernate.query.sqm.UnknownEntityException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.server.ResponseStatusException
+import java.util.NoSuchElementException
 
 /** @TODO
  *     Kotlin has "result" response with sealed class
@@ -40,28 +38,14 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(ex.statusCode).body(error)
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException::class)
-    fun handleInvalidEnumException(ex: HttpMessageNotReadableException): ResponseEntity<ApiError> {
+    @ExceptionHandler(NoSuchElementException::class)
+    fun handleInvalidEnumException(ex: NoSuchElementException): ResponseEntity<ApiError> {
         val cause = ex.cause;
-        val defaultError = ApiError(
+        val error = ApiError(
             status = HttpStatus.BAD_REQUEST.value(),
             error = "Invalid request format",
-            message = ""
+            message = "Sent data is incorrect. Please check your input format.",
         );
-
-        val error = if (cause is InvalidFormatException && cause.targetType.isEnum) {
-            if (cause.targetType == UserRole::class.java) {
-                ApiError(
-                    status = HttpStatus.BAD_REQUEST.value(),
-                    error = "Can't parse the data",
-                    message = "Invalid role value"
-                );
-            } else {
-                defaultError
-            }
-        } else {
-            defaultError
-        }
 
         return ResponseEntity.badRequest().body(error)
     }

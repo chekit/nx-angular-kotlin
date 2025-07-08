@@ -1,10 +1,9 @@
 package nl.rabobank.org_users_rest.controller
 
 import jakarta.validation.Valid
-import nl.rabobank.org_users_rest.entity.User
+import nl.rabobank.org_users_rest.model.AddUserDto
 import nl.rabobank.org_users_rest.model.UserDto
-import nl.rabobank.org_users_rest.model.UserDto_2
-import nl.rabobank.org_users_rest.model.UserUpdateDto
+import nl.rabobank.org_users_rest.model.UpdateUserDto
 import nl.rabobank.org_users_rest.service.UsersService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -15,17 +14,17 @@ import org.springframework.web.bind.annotation.*
 class UsersController(private val usersService: UsersService) {
 
     @GetMapping("/", "")
-    fun getUsers(): ResponseEntity<List<UserDto_2>> = ResponseEntity.ok(usersService.getUsers());
+    fun getUsers(): ResponseEntity<List<UserDto>> = ResponseEntity.ok(usersService.getUsers());
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: Int): ResponseEntity<User> = ResponseEntity.ok(usersService.getUser(id));
+    fun getUser(@PathVariable id: Int): ResponseEntity<UserDto> = ResponseEntity.ok(usersService.getUser(id));
 
     @PostMapping("/", "")
-    fun addUser(@RequestBody @Valid userData: UserDto): ResponseEntity<List<UserDto_2>> =
+    fun addUser(@RequestBody @Valid userData: AddUserDto): ResponseEntity<List<UserDto>> =
         ResponseEntity.accepted().body(usersService.addUser(userData))
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Int, @RequestBody userData: UserUpdateDto): ResponseEntity<User> =
+    fun updateUser(@PathVariable id: Int, @RequestBody userData: UpdateUserDto): ResponseEntity<UserDto> =
         ResponseEntity.accepted().body(usersService.updateUserById(id, userData));
 
     @DeleteMapping("/{id}")
