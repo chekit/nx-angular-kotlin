@@ -2,8 +2,8 @@ package nl.rabobank.org_users_rest.service
 
 import nl.rabobank.org_users_rest.entity.User
 import nl.rabobank.org_users_rest.model.AddUserDto
-import nl.rabobank.org_users_rest.model.UserDto
 import nl.rabobank.org_users_rest.model.UpdateUserDto
+import nl.rabobank.org_users_rest.model.UserDto
 import nl.rabobank.org_users_rest.repository.DbRoleRepository
 import nl.rabobank.org_users_rest.repository.DbUsersRepository
 import org.springframework.http.HttpStatus
@@ -23,9 +23,11 @@ class UsersService(private val usersRepo: DbUsersRepository, private val roleRep
     }
 
     fun addUser(data: AddUserDto): List<UserDto> {
-        val users: List<UserDto> = getUsers();
-        val lastId: Int = users.maxByOrNull { it.id }?.let { it.id + 1 } ?: 0;
-        val newUser = User(firstName = data.firstName, lastName = data.lastName, role = roleRepo.findById(data.role).orElseThrow());
+        val newUser = User(
+            firstName = data.firstName,
+            lastName = data.lastName,
+            role = roleRepo.findById(data.role)
+                .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") });
 
         usersRepo.save(newUser)
 
@@ -39,7 +41,10 @@ class UsersService(private val usersRepo: DbUsersRepository, private val roleRep
             id = user.id,
             firstName = data.firstName ?: user.firstName,
             lastName = data.lastName ?: user.lastName,
-            role = data.role?.let { roleRepo.findById(data.role).orElseThrow()  } ?: user.role
+            role = data.role?.let {
+                roleRepo.findById(data.role)
+                    .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") }
+            } ?: user.role
         )
 
         return UserDto(usersRepo.save(updatedUser));
