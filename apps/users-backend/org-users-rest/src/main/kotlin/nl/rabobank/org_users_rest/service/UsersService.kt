@@ -4,14 +4,13 @@ import nl.rabobank.org_users_rest.entity.User
 import nl.rabobank.org_users_rest.model.AddUserDto
 import nl.rabobank.org_users_rest.model.UpdateUserDto
 import nl.rabobank.org_users_rest.model.UserDto
-import nl.rabobank.org_users_rest.repository.DbRoleRepository
 import nl.rabobank.org_users_rest.repository.DbUsersRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
 @Service
-class UsersService(private val usersRepo: DbUsersRepository, private val roleRepo: DbRoleRepository) {
+class UsersService(private val usersRepo: DbUsersRepository, private val roleService: RolesService) {
     fun getUsers(): List<UserDto> = usersRepo.findAll()
         .map { UserDto(it) }
         .toList();
@@ -26,8 +25,11 @@ class UsersService(private val usersRepo: DbUsersRepository, private val roleRep
         val newUser = User(
             firstName = data.firstName,
             lastName = data.lastName,
-            role = roleRepo.findById(data.role)
-                .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") });
+            role = roleService.getRoleById(data.role) ?: throw ResponseStatusException(
+                HttpStatus.I_AM_A_TEAPOT,
+                "User role is incorrect"
+            )
+        )
 
         usersRepo.save(newUser)
 
@@ -44,8 +46,10 @@ class UsersService(private val usersRepo: DbUsersRepository, private val roleRep
                 firstName = data.firstName ?: user.firstName,
                 lastName = data.lastName ?: user.lastName,
                 role = data.role?.let {
-                    roleRepo.findById(data.role)
-                        .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User role is incorrect") }
+                    roleService.getRoleById(data.role) ?: throw ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "User role is incorrect"
+                    )
                 } ?: user.role
             ))
 

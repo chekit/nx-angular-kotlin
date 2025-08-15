@@ -11,5 +11,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 import java.util.Optional
 
 
-interface DbUsersRepository: CrudRepository<User, Int>;
-interface DbRoleRepository: CrudRepository<Role, Int>;
+interface DbUsersRepository : CrudRepository<User, Int>;
