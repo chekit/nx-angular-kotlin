@@ -25,7 +25,7 @@ import org.testcontainers.junit.jupiter.Container
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class RolesControllerTest() {
+class RolesControllerIntegrationTest() {
     @LocalServerPort
     private val port: Int? = null
 
