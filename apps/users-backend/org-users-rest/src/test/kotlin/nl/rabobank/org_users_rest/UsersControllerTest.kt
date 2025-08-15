@@ -166,6 +166,6 @@ class UsersControllerTest() {
             .delete("/api/users/$testId")
             .then()
             .statusCode(404)
-            .body("message", equalTo("User with ID $testId not found")) 
+            .body("message", equalTo("User with ID $testId not found"))
     }
 }
