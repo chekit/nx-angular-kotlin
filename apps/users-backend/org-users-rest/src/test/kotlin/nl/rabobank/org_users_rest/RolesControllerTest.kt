@@ -10,11 +10,11 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
-import org.springframework.test.context.DynamicPropertyRegistry
-import org.springframework.test.context.DynamicPropertySource
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 
@@ -24,36 +24,29 @@ import org.testcontainers.junit.jupiter.Container
  * @see {@link https://testcontainers.com/guides/testing-spring-boot-rest-api-using-testcontainers/#_write_test_for_api_endpoint}
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RolesControllerTest() {
     @LocalServerPort
     private val port: Int? = null
 
-    companion object {
+    companion object  {
         @Container
+        @ServiceConnection
         var postgres: PostgreSQLContainer<*> = PostgreSQLContainer(
             "postgres:16-alpine"
         )
-
-        @JvmStatic
-        @BeforeAll
-        fun beforeAll() {
-            postgres.start()
-        }
-
-        @JvmStatic
-        @AfterAll
-        fun afterAll() {
-            postgres.stop()
-        };
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun configureProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", postgres::getJdbcUrl);
-            registry.add("spring.datasource.username", postgres::getUsername);
-            registry.add("spring.datasource.password", postgres::getPassword);
-        }
     }
+
+    @BeforeAll
+    fun beforeAll() {
+        postgres.start()
+    }
+
+    @AfterAll
+    fun afterAll() {
+        postgres.stop()
+    };
+
 
     @Autowired
     private lateinit var underTest: RolesController
@@ -66,7 +59,6 @@ class RolesControllerTest() {
     @Test
     fun `when request roles the list of all roles returned`() {
         val expectedRolesList: List<Role> = listOf(Role(0, "User"), Role(1, "Moderator"), Role(2, "Admin"))
-        underTest.getRoles()
 
         given()
             .contentType(ContentType.JSON)
@@ -81,7 +73,6 @@ class RolesControllerTest() {
     @Test
     fun `when request role by ID the role returned`() {
         val expectedRole: Role = Role(1, "Moderator")
-        underTest.getRole(1)
 
         given()
             .contentType(ContentType.JSON)

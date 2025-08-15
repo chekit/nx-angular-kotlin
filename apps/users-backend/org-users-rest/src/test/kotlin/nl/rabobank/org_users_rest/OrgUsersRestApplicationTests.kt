@@ -9,5 +9,4 @@ class OrgUsersRestApplicationTests {
 	@Test
 	fun contextLoads() {
 	}
-
 }
