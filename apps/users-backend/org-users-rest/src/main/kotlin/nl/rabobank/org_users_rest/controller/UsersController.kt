@@ -23,7 +23,7 @@ class UsersController(private val usersService: UsersService) {
     fun addUser(@RequestBody @Valid userData: AddUserDto): ResponseEntity<List<UserDto>> =
         usersService.addUser(userData).let { ResponseEntity.accepted().body(it) }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     fun updateUser(@PathVariable id: Int, @RequestBody userData: UpdateUserDto): ResponseEntity<UserDto> =
         usersService.updateUserById(id, userData).let { ResponseEntity.accepted().body(it) }
 

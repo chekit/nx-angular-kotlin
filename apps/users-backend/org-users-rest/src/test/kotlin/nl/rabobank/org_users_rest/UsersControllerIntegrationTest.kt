@@ -22,7 +22,7 @@ import org.testcontainers.junit.jupiter.Container
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class UsersControllerIntegrationTest() {
+class UsersControllerIntegrationTest {
     @LocalServerPort
     private val port: Int? = null
 
@@ -119,7 +119,7 @@ class UsersControllerIntegrationTest() {
             .body(updateUser)
             .contentType(ContentType.JSON)
             .`when`()
-            .put("/api/users/${addedUser?.id}")
+            .patch("/api/users/${addedUser?.id}")
             .then()
             .statusCode(202)
             .body(
