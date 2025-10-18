@@ -2,57 +2,268 @@
   "version": "6.0",
   "nxVersion": "21.6.4",
   "pathMappings": {},
-  "nxJsonPlugins": [],
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
+    },
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ],
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "users": [
+        {
+          "file": "apps/users/eslint.config.mjs",
+          "hash": "16756400681144203361",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "apps/users/project.json",
+          "hash": "6836657038259446908"
+        },
+        {
+          "file": "apps/users/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/users/src/app/app.config.ts",
+          "hash": "4515289115773032281",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "apps/users/src/app/app.html",
+          "hash": "11987652264972370457"
+        },
+        {
+          "file": "apps/users/src/app/app.routes.ts",
+          "hash": "6185150965714414910",
+          "deps": [
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "apps/users/src/app/app.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/users/src/app/app.spec.ts",
+          "hash": "3806668170383246032",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/users/src/app/app.ts",
+          "hash": "17288527700290100228",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "apps/users/src/app/nx-welcome.ts",
+          "hash": "13073779996007643272",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "apps/users/src/index.html",
+          "hash": "2815995995730781459"
+        },
+        {
+          "file": "apps/users/src/main.ts",
+          "hash": "3314327030169821486",
+          "deps": [
+            "npm:@angular/platform-browser"
+          ]
+        },
+        {
+          "file": "apps/users/src/styles.scss",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "apps/users/src/test-setup.ts",
+          "hash": "539921863778627670",
+          "deps": [
+            "npm:@angular/compiler",
+            "npm:@analogjs/vitest-angular",
+            "npm:@angular/platform-browser",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/users/tsconfig.app.json",
+          "hash": "14015480133463777547"
+        },
+        {
+          "file": "apps/users/tsconfig.json",
+          "hash": "4663124578817442910"
+        },
+        {
+          "file": "apps/users/tsconfig.spec.json",
+          "hash": "11359119564988205903"
+        },
+        {
+          "file": "apps/users/vite.config.mts",
+          "hash": "1344138699735951988",
+          "deps": [
+            "npm:vite",
+            "npm:@analogjs/vite-plugin-angular",
+            "npm:@nx/vite"
+          ]
+        }
+      ],
+      "users-e2e": [
+        {
+          "file": "apps/users-e2e/eslint.config.mjs",
+          "hash": "1172734138943286526",
+          "deps": [
+            "npm:eslint-plugin-playwright"
+          ]
+        },
+        {
+          "file": "apps/users-e2e/playwright.config.ts",
+          "hash": "10417714438616806178",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/users-e2e/project.json",
+          "hash": "924999408215516193"
+        },
+        {
+          "file": "apps/users-e2e/src/example.spec.ts",
+          "hash": "16019101014373124625",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/users-e2e/tsconfig.json",
+          "hash": "15726545290547512047"
+        }
+      ],
       "users-list": [
         {
-          "file": ".nx/workspace-data/d/server-process.json",
-          "hash": "4701247427850783106"
+          "file": ".gitignore",
+          "hash": "15036955412435726112"
         },
         {
-          "file": ".nx/workspace-data/file-map.json",
-          "hash": "11484229562188629956"
+          "file": ".prettierignore",
+          "hash": "5407418692668764289"
         },
         {
-          "file": ".nx/workspace-data/lockfile.hash",
-          "hash": "6395687151971627099"
+          "file": ".prettierrc",
+          "hash": "16267754514737964994"
         },
         {
-          "file": ".nx/workspace-data/nx_files.nxt",
-          "hash": "95888170952668018"
+          "file": ".vscode/extensions.json",
+          "hash": "17554676857246940898"
         },
         {
-          "file": ".nx/workspace-data/parsed-lock-file.json",
-          "hash": "16716306389420486392"
-        },
-        {
-          "file": ".nx/workspace-data/project-graph.json",
-          "hash": "5344473764775455194"
-        },
-        {
-          "file": ".nx/workspace-data/source-maps.json",
-          "hash": "8220094224509486506"
+          "file": "eslint.config.mjs",
+          "hash": "8944620160701465",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
         },
         {
           "file": "nx.json",
-          "hash": "18336426213955174907"
+          "hash": "8160957620192300321"
         },
         {
           "file": "package-lock.json",
-          "hash": "4443204622849000815"
+          "hash": "11390431857076616555"
         },
         {
           "file": "package.json",
-          "hash": "15213098963598247439",
+          "hash": "12071606350877979708",
           "deps": [
+            "npm:@analogjs/vite-plugin-angular",
+            "npm:@analogjs/vitest-angular",
+            "npm:@angular-devkit/core",
+            "npm:@angular-devkit/schematics",
+            "npm:@angular/build",
+            "npm:@angular/cli",
+            "npm:@angular/compiler-cli",
+            "npm:@angular/language-service",
+            "npm:@eslint/js",
             "npm:@nx/angular",
-            "npm:nx"
+            "npm:@nx/devkit",
+            "npm:@nx/eslint",
+            "npm:@nx/eslint-plugin",
+            "npm:@nx/js",
+            "npm:@nx/playwright",
+            "npm:@nx/vite",
+            "npm:@nx/web",
+            "npm:@playwright/test",
+            "npm:@schematics/angular",
+            "npm:@swc-node/register",
+            "npm:@swc/core",
+            "npm:@swc/helpers",
+            "npm:@types/node",
+            "npm:@typescript-eslint/utils",
+            "npm:@vitest/coverage-v8",
+            "npm:@vitest/ui",
+            "npm:angular-eslint",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-playwright",
+            "npm:jiti",
+            "npm:jsdom",
+            "npm:nx",
+            "npm:prettier",
+            "npm:tslib",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:vite",
+            "npm:vitest",
+            "npm:@angular/common",
+            "npm:@angular/compiler",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "npm:rxjs",
+            "npm:zone.js"
           ]
+        },
+        {
+          "file": "pnpm-lock.yaml",
+          "hash": "10293671722315380208"
+        },
+        {
+          "file": "pnpm-workspace.yaml",
+          "hash": "15505487256474795459"
+        },
+        {
+          "file": "tsconfig.base.json",
+          "hash": "16936441711144470533"
+        },
+        {
+          "file": "vitest.workspace.ts",
+          "hash": "4665328684042819579"
         }
       ]
     }
   },
-  "externalNodesHash": "11531807262091810279"
+  "externalNodesHash": "12076630902732938943"
 }
