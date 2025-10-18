@@ -9,5 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.18.2"
+  "packageManager": "pnpm@10.18.2",
+  "devDependencies": {
+    "@angular-devkit/core": "~20.3.0",
+    "@nx/angular": "^21.6.4",
+    "nx": "21.6.4"
+  },
+  "nx": {},
+  "dependencies": {}
 }

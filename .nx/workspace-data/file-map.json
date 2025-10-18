@@ -1,0 +1,58 @@
+{
+  "version": "6.0",
+  "nxVersion": "21.6.4",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [],
+    "projectFileMap": {
+      "users-list": [
+        {
+          "file": ".nx/workspace-data/d/server-process.json",
+          "hash": "4701247427850783106"
+        },
+        {
+          "file": ".nx/workspace-data/file-map.json",
+          "hash": "11484229562188629956"
+        },
+        {
+          "file": ".nx/workspace-data/lockfile.hash",
+          "hash": "6395687151971627099"
+        },
+        {
+          "file": ".nx/workspace-data/nx_files.nxt",
+          "hash": "95888170952668018"
+        },
+        {
+          "file": ".nx/workspace-data/parsed-lock-file.json",
+          "hash": "16716306389420486392"
+        },
+        {
+          "file": ".nx/workspace-data/project-graph.json",
+          "hash": "5344473764775455194"
+        },
+        {
+          "file": ".nx/workspace-data/source-maps.json",
+          "hash": "8220094224509486506"
+        },
+        {
+          "file": "nx.json",
+          "hash": "18336426213955174907"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "4443204622849000815"
+        },
+        {
+          "file": "package.json",
+          "hash": "15213098963598247439",
+          "deps": [
+            "npm:@nx/angular",
+            "npm:nx"
+          ]
+        }
+      ]
+    }
+  },
+  "externalNodesHash": "11531807262091810279"
+}
