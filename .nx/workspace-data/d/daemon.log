@@ -429,3 +429,11 @@ DEBUG nx::native::tasks::task_hasher: hash_plans COMPLETED in 1.52225ms - proces
 [NX v21.6.4 Daemon Server] - 2025-10-18T11:14:59.787Z - Handled POST_TASKS_EXECUTION. Handling time: 0. Response time: 1.
 [NX v21.6.4 Daemon Server] - 2025-10-18T11:14:59.787Z - Time taken for 'postTasksExecution' 0.1989160000011907ms
 [NX v21.6.4 Daemon Server] - 2025-10-18T11:14:59.796Z - Closed a connection. Number of open connections: 2
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.429Z - [WATCHER]: 41 file(s) created or restored, 0 file(s) modified, 0 file(s) deleted
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - [WATCHER]: Processing file changes in outputs
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - Closed a connection. Number of open connections: 1
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - Closed a connection. Number of open connections: 0
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - [WATCHER]: Stopping the watcher for /Users/antoncherepov/projetcs/users-list (sources)
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - [WATCHER]: Stopping the watcher for /Users/antoncherepov/projetcs/users-list (sources)
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.430Z - [WATCHER]: Stopping the watcher for /Users/antoncherepov/projetcs/users-list (outputs)
+[NX v21.6.4 Daemon Server] - 2025-10-18T11:42:37.432Z - Server stopped because: "Stopping the daemon the set of ignored files changed (native)"

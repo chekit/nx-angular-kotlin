@@ -1,0 +1,3 @@
+ALTER TABLE users RENAME TO "user";
+
+ALTER TABLE roles RENAME TO role;
