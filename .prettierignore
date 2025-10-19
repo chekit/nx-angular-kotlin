@@ -4,3 +4,12 @@
 /.nx/cache
 /.nx/workspace-data
 .angular
+
+
+# Maven target
+target/
+.m2/repository
+
+# Maven target
+target/
+maven/.m2/repository

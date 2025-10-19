@@ -3,8 +3,13 @@
   "targetDefaults": {
     "@angular/build:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "default",
+        "^default"
+      ]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -17,7 +22,20 @@
     },
     "@nx/vite:test": {
       "cache": true,
-      "inputs": ["default", "^default"]
+      "inputs": [
+        "default",
+        "^default"
+      ]
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "plugins": [
@@ -32,6 +50,13 @@
       "options": {
         "targetName": "lint"
       }
+    },
+    {
+      "plugin": "@jnxplus/nx-maven",
+      "options": {
+        "mavenRootDirectory": "maven",
+        "localRepoRelativePath": ".m2/repository"
+      }
     }
   ],
   "generators": {
@@ -41,5 +66,14 @@
       "style": "scss",
       "unitTestRunner": "vitest"
     }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/src/test/**/*"
+    ]
   }
 }

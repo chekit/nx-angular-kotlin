@@ -33,3 +33,22 @@ e2e/*.map
 
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+
+.nx/cache
+.nx-cache
+.nx/cache
+.nx/workspace-data
+
+# Maven
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+.m2/repository
+
+# Maven
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+maven/.m2/repository

@@ -486,6 +486,10 @@
       "apps/users/project.json",
       "nx/core/project-json"
     ],
+    "targets.serve.dependsOn": [
+      "apps/users/project.json",
+      "nx/core/project-json"
+    ],
     "targets.serve.configurations.production": [
       "apps/users/project.json",
       "nx/core/project-json"
@@ -615,6 +619,202 @@
       "nx/target-defaults"
     ],
     "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "maven": {
+    "root": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "tags.nx-maven": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "targets": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "targets.build": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.task": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputDirLocalRepo": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "$schema": [
+      "maven/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "maven/apps/users-backend": {
+    "root": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "tags.nx-maven": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "targets": [
+      "nx.json",
+      "@jnxplus/nx-maven"
+    ],
+    "targets.build": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.task": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build-image": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build-image.executor": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build-image.options": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build-image.options.task": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.dependsOn": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.continuous": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.task": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.dependsOn": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.task": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "maven/apps/users-backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
       "nx.json",
       "nx/target-defaults"
     ]

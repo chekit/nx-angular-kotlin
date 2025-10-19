@@ -1,9 +1,21 @@
 {
   "run": {
     "command": "nx serve users",
-    "startTime": "2025-10-18T11:14:56.674Z",
-    "endTime": "2025-10-18T11:14:59.623Z",
+    "startTime": "2025-10-19T12:47:59.488Z",
+    "endTime": "2025-10-19T12:54:29.177Z",
     "inner": false
   },
-  "tasks": []
+  "tasks": [
+    {
+      "taskId": "users-backend-parent:build",
+      "target": "build",
+      "projectName": "users-backend-parent",
+      "hash": "17172939616060930300",
+      "startTime": "2025-10-19T12:47:59.513Z",
+      "endTime": "2025-10-19T12:47:59.519Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    }
+  ]
 }

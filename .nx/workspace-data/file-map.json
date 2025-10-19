@@ -14,11 +14,82 @@
       "options": {
         "targetName": "lint"
       }
+    },
+    {
+      "name": "@jnxplus/nx-maven",
+      "version": "^1.22.0",
+      "options": {
+        "mavenRootDirectory": "maven",
+        "localRepoRelativePath": ".m2/repository"
+      }
     }
   ],
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "users-backend": [
+        {
+          "file": "maven/apps/users-backend/pom.xml",
+          "hash": "16909268433050572690",
+          "deps": [
+            "users-backend-parent"
+          ]
+        },
+        {
+          "file": "maven/apps/users-backend/project.json",
+          "hash": "7928915215583663199"
+        },
+        {
+          "file": "maven/apps/users-backend/src/main/kotlin/nl/rabobank/usersbackend/HelloController.kt",
+          "hash": "17561738991358083925"
+        },
+        {
+          "file": "maven/apps/users-backend/src/main/kotlin/nl/rabobank/usersbackend/UsersBackendApplication.kt",
+          "hash": "6580148144567981246"
+        },
+        {
+          "file": "maven/apps/users-backend/src/main/resources/application.properties",
+          "hash": "4055606894390288348"
+        },
+        {
+          "file": "maven/apps/users-backend/src/test/kotlin/nl/rabobank/usersbackend/HelloControllerTests.kt",
+          "hash": "6540188823239223132"
+        },
+        {
+          "file": "maven/apps/users-backend/src/test/kotlin/nl/rabobank/usersbackend/UsersBackendApplicationTests.kt",
+          "hash": "5886845945881499122"
+        },
+        {
+          "file": "maven/apps/users-backend/src/test/resources/application.properties",
+          "hash": "4055606894390288348"
+        },
+        {
+          "file": "maven/apps/users-backend/src/test/resources/junit-platform.properties",
+          "hash": "16745518566440693767"
+        }
+      ],
+      "users-backend-parent": [
+        {
+          "file": "maven/.mvn/wrapper/maven-wrapper.properties",
+          "hash": "7720921598456675219"
+        },
+        {
+          "file": "maven/mvnw",
+          "hash": "15069388377727069083"
+        },
+        {
+          "file": "maven/mvnw.cmd",
+          "hash": "1237986550895226753"
+        },
+        {
+          "file": "maven/pom.xml",
+          "hash": "4562638949559488609"
+        },
+        {
+          "file": "maven/project.json",
+          "hash": "15498890353123004450"
+        }
+      ],
       "users": [
         {
           "file": "apps/users/eslint.config.mjs",
@@ -29,7 +100,7 @@
         },
         {
           "file": "apps/users/project.json",
-          "hash": "6836657038259446908"
+          "hash": "15305273823345803609"
         },
         {
           "file": "apps/users/public/favicon.ico",
@@ -37,15 +108,16 @@
         },
         {
           "file": "apps/users/src/app/app.config.ts",
-          "hash": "4515289115773032281",
+          "hash": "13796683566544976595",
           "deps": [
+            "npm:@angular/common",
             "npm:@angular/core",
             "npm:@angular/router"
           ]
         },
         {
           "file": "apps/users/src/app/app.html",
-          "hash": "11987652264972370457"
+          "hash": "15407079528590883171"
         },
         {
           "file": "apps/users/src/app/app.routes.ts",
@@ -56,7 +128,7 @@
         },
         {
           "file": "apps/users/src/app/app.scss",
-          "hash": "3244421341483603138"
+          "hash": "6993318292962500330"
         },
         {
           "file": "apps/users/src/app/app.spec.ts",
@@ -67,8 +139,9 @@
         },
         {
           "file": "apps/users/src/app/app.ts",
-          "hash": "17288527700290100228",
+          "hash": "17650730190584003820",
           "deps": [
+            "npm:@angular/common",
             "npm:@angular/core",
             "npm:@angular/router"
           ]
@@ -163,20 +236,188 @@
       ],
       "users-list": [
         {
+          "file": ".gitattributes",
+          "hash": "10635757319499449613"
+        },
+        {
           "file": ".gitignore",
-          "hash": "15036955412435726112"
+          "hash": "17124673167474532136"
         },
         {
           "file": ".prettierignore",
-          "hash": "5407418692668764289"
+          "hash": "3266152716489710669"
         },
         {
           "file": ".prettierrc",
-          "hash": "16267754514737964994"
+          "hash": "3441211505738557509"
         },
         {
           "file": ".vscode/extensions.json",
           "hash": "17554676857246940898"
+        },
+        {
+          "file": "apps/users-backend-init/.gitignore",
+          "hash": "17355699318675351357"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/.gitattributes",
+          "hash": "6003687593561338678"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/.gitignore",
+          "hash": "13117984693027047402"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/.mvn/wrapper/maven-wrapper.properties",
+          "hash": "7720921598456675219"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/README.md",
+          "hash": "12443846306413921241"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/mvnw",
+          "hash": "15069388377727069083"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/mvnw.cmd",
+          "hash": "1237986550895226753"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/pom.xml",
+          "hash": "6208474068217593212"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/docker/docker-compose.yml",
+          "hash": "18432630914163111431"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/OrgUsersRestApplication.kt",
+          "hash": "17307167287364671259"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/config/ApplicationConfig.kt",
+          "hash": "10820348366485874450"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/controller/RolesController.kt",
+          "hash": "18217834864166008268"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/controller/UsersController.kt",
+          "hash": "12508676342696867804"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/entity/Role.kt",
+          "hash": "4772660205595497704"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/entity/User.kt",
+          "hash": "14460174757716234094"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/exception/ApiError.kt",
+          "hash": "16533997402329318565"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/exception/GlobalExceptionHandler.kt",
+          "hash": "8584822466140462459"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/model/User.kt",
+          "hash": "16498934093834262188"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/repository/DbRoleRepository.kt",
+          "hash": "15292942251133587365"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/repository/DbUsersRepository.kt",
+          "hash": "3994440570931631942"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/service/RolesService.kt",
+          "hash": "16658539718658595152"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/kotlin/nl/rabobank/org_users_rest/service/UsersService.kt",
+          "hash": "2911974585538849424"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/application.properties",
+          "hash": "11321564375111722825"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V1__init.sql",
+          "hash": "12253343492528700291"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V2__add_roles_table.sql",
+          "hash": "17986453442297162698"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V3__rename_tables.sql",
+          "hash": "9868464420937095577"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V4__rename_table_user_to_users.sql",
+          "hash": "17845085935589694634"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V5__add_role_to_role_table.sql",
+          "hash": "6268229814953296876"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V6__add_static_roles_to_role_table.sql",
+          "hash": "13774146137095086482"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V7__reset_users_id_sequence.sql",
+          "hash": "5852763074621527192"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/db/migration/V8__reset_users_id_sequence_v2.sql",
+          "hash": "4870385496841536694"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/flyway.conf",
+          "hash": "8692262801263172089"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/http/OrgUsersHttpRequests.http",
+          "hash": "9111371498528435630"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/main/resources/static/users.json",
+          "hash": "17832665083949090196"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/GlobalExceptionHandlerTest.kt",
+          "hash": "5372106063463457701"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/HttpLayerTest.kt",
+          "hash": "119117259408066491"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/OrgUsersRestApplicationTests.kt",
+          "hash": "1507476221005444750"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/RolesControllerIntegrationTest.kt",
+          "hash": "17299063926600791104"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/RolesServiceTest.kt",
+          "hash": "18331454293764851874"
+        },
+        {
+          "file": "apps/users-backend-init/org-users-rest/src/test/kotlin/nl/rabobank/org_users_rest/UsersControllerIntegrationTest.kt",
+          "hash": "3603927173649634639"
+        },
+        {
+          "file": "apps/users-backend-init/schema/kotlin-mentorship-diagram.drawio",
+          "hash": "6008186343394202576"
         },
         {
           "file": "eslint.config.mjs",
@@ -187,15 +428,11 @@
         },
         {
           "file": "nx.json",
-          "hash": "8160957620192300321"
-        },
-        {
-          "file": "package-lock.json",
-          "hash": "11390431857076616555"
+          "hash": "12213825992914029935"
         },
         {
           "file": "package.json",
-          "hash": "12071606350877979708",
+          "hash": "9319897467315947550",
           "deps": [
             "npm:@analogjs/vite-plugin-angular",
             "npm:@analogjs/vitest-angular",
@@ -206,6 +443,7 @@
             "npm:@angular/compiler-cli",
             "npm:@angular/language-service",
             "npm:@eslint/js",
+            "npm:@jnxplus/nx-maven",
             "npm:@nx/angular",
             "npm:@nx/devkit",
             "npm:@nx/eslint",
@@ -215,6 +453,7 @@
             "npm:@nx/vite",
             "npm:@nx/web",
             "npm:@playwright/test",
+            "npm:@prettier/plugin-xml",
             "npm:@schematics/angular",
             "npm:@swc-node/register",
             "npm:@swc/core",
@@ -231,6 +470,7 @@
             "npm:jsdom",
             "npm:nx",
             "npm:prettier",
+            "npm:prettier-plugin-java",
             "npm:tslib",
             "npm:typescript",
             "npm:typescript-eslint",
@@ -248,7 +488,7 @@
         },
         {
           "file": "pnpm-lock.yaml",
-          "hash": "10293671722315380208"
+          "hash": "17915988022347896768"
         },
         {
           "file": "pnpm-workspace.yaml",
@@ -256,7 +496,7 @@
         },
         {
           "file": "tsconfig.base.json",
-          "hash": "16936441711144470533"
+          "hash": "918461261613401149"
         },
         {
           "file": "vitest.workspace.ts",
@@ -265,5 +505,5 @@
       ]
     }
   },
-  "externalNodesHash": "12076630902732938943"
+  "externalNodesHash": "11087139037065808726"
 }
