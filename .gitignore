@@ -34,6 +34,7 @@ e2e/*.map
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 
+.nx
 /.nx/cache
 /.nx/workspace-data
 
