@@ -1,5 +1,7 @@
 <button (click)="checkConnection()">Check Connection</button>
-<p>Connection status: {{ connectionStatus() }}</p>
-<hr />
-<app-nx-welcome></app-nx-welcome>
+
+@let data = connectionStatus() ?? '';
+
+<p>Connection status: {{ data | json }}</p>
+
 <router-outlet></router-outlet>
