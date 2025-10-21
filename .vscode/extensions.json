@@ -1,3 +1,14 @@
 {
-  "recommendations": ["ms-playwright.playwright"]
+  "recommendations": [
+    "angular.ng-template",
+    "ms-playwright.playwright",
+    "vitest.explorer",
+    "vscjava.vscode-java-debug",
+    "fwcd.kotlin",
+    "jetbrains.kotlin",
+    "redhat.java",
+    "vscjava.vscode-maven",
+    "vscjava.vscode-java-dependency",
+    "vscjava.vscode-java-test"
+  ]
 }
