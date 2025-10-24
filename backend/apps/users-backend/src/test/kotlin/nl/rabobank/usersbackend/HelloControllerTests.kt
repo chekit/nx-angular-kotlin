@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus
+import nl.rabobank.usersbackend.models.UserData
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HelloControllerTests(@Autowired val restTemplate: TestRestTemplate) {
@@ -19,11 +20,12 @@ class HelloControllerTests(@Autowired val restTemplate: TestRestTemplate) {
   }
 
   @Test
-  fun `Should return Hello World`() {
-    println(">> Should return Hello World")
+  fun `Should return payload`() {
+    println(">> Should return payload")
     val entity = restTemplate.getForEntity<String>("/")
     assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-    assertThat(entity.body).contains("Hello World")
+    assertThat(entity.body).contains("Test")
+    assertThat(entity.body).contains("Admin")
   }
 
 
