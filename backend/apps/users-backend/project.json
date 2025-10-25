@@ -12,6 +12,7 @@
       "options": {
         "task": "package spring-boot:repackage -DskipTests=true",
         "waitUntilTargets": [
+          "docker:down",
           "docker:up"
         ]
       }
@@ -46,10 +47,18 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "echo 🚦 Stop Docker",
-          "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml down",
           "echo 🧱 Start Docker",
           "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml up -d"
+        ],
+        "parallel": false
+      }
+    },
+    "docker:down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "echo 🚦 Stop Docker",
+          "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml down"
         ],
         "parallel": false
       }

@@ -1,0 +1,26 @@
+{
+  "info": {
+    "_postman_id": "fa1528f9-a0fe-4277-911e-e4c552b9318c",
+    "name": "Users List",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2a83ad90-91d5-4d3d-9117-4e78ea6c0c3d"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8080/",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "https",
+          "host": [
+            "example",
+            "com"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
