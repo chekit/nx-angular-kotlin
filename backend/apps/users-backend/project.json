@@ -12,7 +12,6 @@
       "options": {
         "task": "package spring-boot:repackage -DskipTests=true",
         "waitUntilTargets": [
-          "docker:down",
           "docker:up"
         ]
       }
@@ -40,6 +39,7 @@
         "task": "test"
       },
       "dependsOn": [
+        "docker:up",
         "^build"
       ]
     },
@@ -51,7 +51,10 @@
           "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml up -d"
         ],
         "parallel": false
-      }
+      },
+      "dependsOn": [
+        "docker:down"
+      ]
     },
     "docker:down": {
       "executor": "nx:run-commands",
