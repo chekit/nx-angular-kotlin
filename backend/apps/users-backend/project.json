@@ -10,7 +10,10 @@
         "{projectRoot}/target"
       ],
       "options": {
-        "task": "package spring-boot:repackage -DskipTests=true"
+        "task": "package spring-boot:repackage -DskipTests=true",
+        "waitUntilTargets": [
+          "docker:up"
+        ]
       }
     },
     "build-image": {
@@ -25,6 +28,7 @@
         "task": "spring-boot:run"
       },
       "dependsOn": [
+        "docker:up",
         "^build"
       ],
       "continuous": true
@@ -37,6 +41,18 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "docker:up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "echo 🚦 Stop Docker",
+          "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml down",
+          "echo 🧱 Start Docker",
+          "cd backend/apps/users-backend/src/main/docker && docker-compose -f docker-compose.yml up -d"
+        ],
+        "parallel": false
+      }
     }
   },
   "tags": []

@@ -20,6 +20,7 @@
   <properties>
     <java.version>21</java.version>
     <kotlin.version>1.9.25</kotlin.version>
+    <jvmTarget>21</jvmTarget>
   </properties>
   <modules>
     <module>apps/users-backend</module>
