@@ -7,7 +7,7 @@
   },
   "item": [
     {
-      "name": "http://localhost:8080/",
+      "name": "Users List",
       "request": {
         "method": "GET",
         "header": [],
@@ -21,6 +21,71 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Add User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "host": [
+            "http:"
+          ],
+          "path": [
+            "localhost:8080",
+            "api",
+            "users"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"firstName\": \"Anton\", \"lastName\" : \"Cherepov\", \"role\": 2}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/users/1",
+          "host": [
+            "http:"
+          ],
+          "path": [
+            "localhost:8080",
+            "api",
+            "users",
+            "1"
+          ],
+          "query": []
+        },
+        "body": {}
+      },
+      "response": [],
+      "event": []
     }
   ]
 }
