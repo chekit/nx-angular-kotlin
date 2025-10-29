@@ -26,7 +26,7 @@ export class App {
   }
 
   getRoles() {
-    this.users.set(null);
+    this.roles.set(null);
     this.http
       .get<Role[]>('http://localhost:8080/api/roles')
       .subscribe((result) => this.roles.set(result));
