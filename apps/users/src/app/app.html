@@ -1,7 +1,12 @@
-<button (click)="checkConnection()">Check Connection</button>
+<button (click)="getUsers()">Get users</button>
 
-@let data = connectionStatus() ?? '';
+@let usersList = users() ?? [];
 
-<p>Connection status: {{ data | json }}</p>
+<p>Users: {{ usersList | json }}</p>
+<hr />
 
-<router-outlet></router-outlet>
+<button (click)="getRoles()">Get roles</button>
+
+@let rolesList = roles() ?? [];
+
+<p>Users: {{ rolesList | json }}</p>
