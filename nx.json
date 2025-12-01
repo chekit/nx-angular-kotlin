@@ -55,7 +55,8 @@
       "plugin": "@jnxplus/nx-maven",
       "options": {
         "mavenRootDirectory": "backend",
-        "localRepoRelativePath": ".m2/repository"
+        "localRepoRelativePath": "backend/.m2/repository",
+        "skipProjectWithoutProjectJson": true
       }
     }
   ],

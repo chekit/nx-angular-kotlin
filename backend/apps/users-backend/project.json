@@ -2,7 +2,7 @@
   "name": "users-backend",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "./maven/apps/users-backend/src",
+  "sourceRoot": "./backend/apps/users-backend/src",
   "targets": {
     "build": {
       "executor": "@jnxplus/nx-maven:run-task",
@@ -67,5 +67,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "nx-maven",
+    "backend",
+    "api"
+  ]
 }

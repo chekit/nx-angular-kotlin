@@ -1,5 +1,5 @@
 {
-  "name": "users-backend-parent",
+  "name": "backend-parent",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "targets": {
     "build": {
@@ -11,5 +11,9 @@
         "task": "install -N"
       }
     }
-  }
+  },
+  "tags": [
+    "nx-maven",
+    "backend"
+  ]
 }
