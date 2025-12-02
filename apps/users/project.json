@@ -97,5 +97,8 @@
         "spa": true
       }
     }
-  }
+  },
+  "implicitDependencies": [
+    "users-backend"
+  ]
 }
