@@ -21,7 +21,7 @@
     "@angular/compiler-cli": "21.0.6",
     "@angular/language-service": "21.0.6",
     "@eslint/js": "^9.8.0",
-    "@jnxplus/nx-maven": "^1.22.0",
+    "@jnxplus/nx-maven": "2.1.0",
     "@nx/angular": "22.3.3",
     "@nx/devkit": "22.3.3",
     "@nx/eslint": "22.3.3",
