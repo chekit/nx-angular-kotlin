@@ -5,18 +5,15 @@
   "prefix": "app",
   "sourceRoot": "apps/users/src",
   "tags": [],
+  "implicitDependencies": ["users-backend"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/users",
         "browser": "apps/users/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/users/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -25,9 +22,7 @@
             "input": "apps/users/public"
           }
         ],
-        "styles": [
-          "apps/users/src/styles.scss"
-        ]
+        "styles": ["apps/users/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -65,9 +60,7 @@
         }
       },
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "users-backend:serve"
-      ]
+      "dependsOn": ["users-backend:serve"]
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
@@ -79,10 +72,8 @@
       "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/apps/users"
       }
@@ -97,8 +88,5 @@
         "spa": true
       }
     }
-  },
-  "implicitDependencies": [
-    "users-backend"
-  ]
+  }
 }
