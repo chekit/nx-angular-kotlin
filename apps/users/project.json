@@ -5,15 +5,21 @@
   "prefix": "app",
   "sourceRoot": "apps/users/src",
   "tags": [],
-  "implicitDependencies": ["users-backend"],
+  "implicitDependencies": [
+    "users-backend"
+  ],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/users",
         "browser": "apps/users/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/users/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +28,9 @@
             "input": "apps/users/public"
           }
         ],
-        "styles": ["apps/users/src/styles.scss"]
+        "styles": [
+          "apps/users/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -60,7 +68,22 @@
         }
       },
       "defaultConfiguration": "development",
-      "dependsOn": ["users-backend:serve"]
+      "dependsOn": [
+        "users-backend:serve"
+      ]
+    },
+    "local": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "users:build:production"
+        },
+        "development": {
+          "buildTarget": "users:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
@@ -73,7 +96,9 @@
     },
     "test": {
       "executor": "@nx/vitest:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "reportsDirectory": "../../coverage/apps/users"
       }
